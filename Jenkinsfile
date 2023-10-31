@@ -21,7 +21,7 @@ pipeline {
                 )]) {
                     sh """
                         echo 'Initialising Terraform'
-                        terraform init
+                        terraform init -upgrade
                     """
                 }
             }
