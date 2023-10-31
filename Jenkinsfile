@@ -68,7 +68,7 @@ pipeline {
             }
         }
     
-        stage('Terraform Apply') {
+        stage('Terraform Destroy') {
             steps {
                 withCredentials([azureServicePrincipal(
                     credentialsId: 'AzureCreds',
@@ -79,7 +79,7 @@ pipeline {
                 )]) {
                     sh """
                         echo 'Applying the plan'
-                        terraform apply -auto-approve -var "client_id=$ARM_CLIENT_ID" -var "client_secret=$ARM_CLIENT_SECRET" -var "subscription_id=$ARM_SUBSCRIPTION_ID" -var "tenant_id=$ARM_TENANT_ID"
+                        terraform destroy -auto-approve -var "client_id=$ARM_CLIENT_ID" -var "client_secret=$ARM_CLIENT_SECRET" -var "subscription_id=$ARM_SUBSCRIPTION_ID" -var "tenant_id=$ARM_TENANT_ID"
                     """
                 }
             }
